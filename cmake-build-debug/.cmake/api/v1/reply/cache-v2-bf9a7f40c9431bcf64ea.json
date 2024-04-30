@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project/cmake-build-debug"
+			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -479,7 +479,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project"
+			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -1127,7 +1127,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project/cmake-build-debug"
+			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project/cmake-build-debug"
 		},
 		{
 			"name" : "second_module_project_IS_TOP_LEVEL",
@@ -1151,7 +1151,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project"
+			"value" : "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project"
 		}
 	],
 	"kind" : "cache",

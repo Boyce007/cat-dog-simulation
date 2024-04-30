@@ -1,4 +1,4 @@
-# Install script for directory: /Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project
+# Install script for directory: /Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

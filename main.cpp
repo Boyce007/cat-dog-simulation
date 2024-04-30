@@ -1,15 +1,7 @@
 #include <iostream>
 #include <random>
+#include <vector>
 using namespace std;
-
-/*
- * bool isNearObject(location l ) {
- *      return(absvalue of location of x  - l.x <= 5 and location of y  - l <=5) {
- *
- *
- * }
- */
-
 
 int randRange(int start, int end) {
     random_device rd;
@@ -26,7 +18,7 @@ struct Location {
 class Animal {
 protected:
     int health;
-    Location location{};
+    Location location {};
     int id;
     void stayInGrid(int &x,int movementValue) {
         if (x > 100) {
@@ -39,12 +31,9 @@ protected:
 
     }
 
-
-
 public:
 
     Animal() {
-        id = -1;
 
     }
     Animal(int id) : health(randRange(20,100)),id(id)
@@ -105,13 +94,10 @@ public:
         return numberOfDogs;
     }
 
+    void operator--() {
 
-    static void removeDog() {
         numberOfDogs--;
     }
-
-
-
 };
 int Dog::numberOfDogs = 0;
 
@@ -132,6 +118,7 @@ public:
         this->health = health;
         numberOfCats++;
     }
+
     ~Cat() {
 
   }
@@ -153,12 +140,13 @@ public:
 
     bool fight(Dog dog) {
         if (determineWinner(dog.getHealth())) {
-//            cout << "cat:"<< id<< " turned " <<"dog: "<<  dog.getId() << " into a cat \n";
+            cout << "cat:"<< id<< " turned " <<"dog: "<<  dog.getId() << " into a cat \n";
             health-=5;
-            Dog::removeDog();
+            dog.operator--();
+            numberOfCats++;
             return true;
         }
-//        cout << "Dog " << dog.getId() << " beat cat " << id << endl;
+        cout << "Dog " << dog.getId() << " beat cat " << id << endl;
         dog.setHealth(dog.getHealth()-5);
         numberOfCats--;
         return false;
@@ -170,55 +158,95 @@ public:
         int randomNumber = randRange(1,100);
         return randomNumber <=chanceOfWinning;
     }
-
 };
 
 int Cat::numberOfCats = 0;
 
 
-/*
-* void fight(Dog dog){
-    * if (dog is near cat ){
-    *        if (determineWinner(dogHealth) {
-    *
-    *              Cat newCat(dog.getId()+catCount)
-    *              catHeath-=5;
-    *
-    *        } else {
-    *          cout << dog.getId << killed << cat.get ID
-    *          dogHealt-=5;
-    *
-    *        }
-    *  }
-      */
-
-/*
-
-* bool determineWinner(dogHealth) {
-    * chanceOf winning  = 50
-    chanceOfWinning += (catHealth -dogHealth)
-    generate random number between 0 and 100
-    if randomNUmber <=chanceOfWinning {
-          return true;
-                *          } else {
-        *          return false;
-        *
-                * }
-    */
-
-
-
-void populateArray(Dog dogs[],int arraySize ) {
-    for(int i =0; i<arraySize; i++) {
-        dogs[i] = Dog(i);
-    }
-}
-
-void populateArray(Cat cats[],int arraySize ) {
+void populateArray(Cat* cats,int arraySize ) {
     for(int i =0; i<arraySize; i++) {
         cats[i] = Cat(i);
     }
 }
+void populateArray(Dog* dogs,int size) {
+    for(int i=0;i<size;i++) {
+        dogs[i] = Dog(i);
+
+    }
+}
+
+class NeverDog {
+private:
+    Dog* dogs;
+    Cat* cats;
+    int startingNumOfCats;
+    int startingNumOfDogs;
+public:
+
+    NeverDog(int numberOfCats, int numberOfDogs) :startingNumOfCats(numberOfCats),startingNumOfDogs(numberOfDogs) {
+        dogs = new Dog[numberOfDogs];
+        populateArray(dogs,numberOfDogs);
+        cats = new Cat[numberOfCats];
+        populateArray(cats,numberOfCats);
+    }
+
+    void increaseCatArray(int newSize) {
+        Cat* newArr = new Cat[newSize];
+        for(int i =0;i<newSize;i++) {
+            newArr[i] = cats[i];
+        }
+        delete[] cats;
+        cats = newArr;
+    }
+
+    void removeFromArray(Dog& dog,int size) {
+        Dog* newArr = new Dog[size-1];
+        for(int i = 0,j = 0;i<size;i++) {
+            if(dogs[i].getId() != dog.getId()) {
+                newArr[j].setId(dogs[i].getId());
+                newArr[j].setLocation(dogs[i].getLocation());
+                newArr[j].setHealth(dogs[i].getHealth());
+            } else  {
+
+                continue;
+            }
+            j++;
+        }
+        delete[] dogs;
+        dogs = newArr;
+    }
+
+    void removeFromArray(Cat& cat,int size) {
+        Cat* newArr = new Cat[size-1];
+        for(int i = 0,j = 0;i<size;i++) {
+            if(cats[i].getId() != cat.getId()) {
+                newArr[j].setId(cats[i].getId());
+                newArr[j].setLocation(cats[i].getLocation());
+                newArr[j].setHealth(cats[i].getHealth());
+            } else  {
+
+                continue;
+            }
+            j++;
+        }
+        delete[] cats;
+        cats = newArr;
+    }
+
+
+   Cat* getCats() {
+        return cats;
+    }
+    Dog* getDogs() {
+        return dogs;
+    }
+
+
+
+
+
+
+};
 
 
 void showAnimalsMeeting(Dog &dog, Cat &cat) {
@@ -226,64 +254,20 @@ void showAnimalsMeeting(Dog &dog, Cat &cat) {
 }
 
 int main() {
-
-
-    Cat cats[50];
-    Dog dogs[50];
-    populateArray(cats,3);
-    populateArray(dogs,47);
-    int earliestFreeSpace = 3;
-    int count = 0;
-    int time =0;
-    while((Dog::getCount()>0 && Cat::getCount()>0) && time<10000) {
-        cout << "days: " << time <<endl;
-        for(Dog &dog:dogs) {
-            if(dog.getId() == -1) {
-//                cout << "first -1 dog conditiond \n";
-                continue;
-            }
-            for(Cat &cat:cats ) {
-                if(cat.getId() == -1) {
-//                    cout << "first -1 cat condition\n";
-                    count++;
-                    if (count <= earliestFreeSpace) {
-//                        cout << "free space true condition \n";
-                        earliestFreeSpace = count;
-                    }
-                    continue;
-                }
-                if(dog.getId() == -1 || cat.getId() == -1) {
-                    continue;
-                }
-                cat.move();
-                dog.move();
-
-                if(dog.isNearObject(cat.getLocation())) {
-                    if (cat.fight(dog)) {
-                        Cat newCat = Cat(100 + dog.getId(), dog.getLocation(), 100);
-                        dog.setId(-1);
-                        cats[earliestFreeSpace] = newCat;
-                        earliestFreeSpace = Cat::getCount();
-                    } else {
-                        cat.setId(-1);
-                        if (count < earliestFreeSpace)
-                            earliestFreeSpace = count;
-                    }
-                }
-                count++;
-                cout << "Number of dogs left " << Dog::getCount() << endl;
-                cout << "Number of cats left " << Cat::getCount() << endl;
-                cout<< "total: " << Dog::getCount() + Cat::getCount() << endl;
-            }
-            count =0;
-        }
-        time++;
-
+    NeverDog neverDog(3,5);
+    Dog* dogs =  neverDog.getDogs();
+    for(int i=0;i<Dog::getCount();i++) {
+        cout << dogs[i].getId() << " is at " << dogs[i].getLocation().x << "," << dogs[i].getLocation().y << endl;
+    }
+    neverDog.removeFromArray(dogs[0],Dog::getCount());
+    for(int i=0;i<Dog::getCount();i++) {
+        cout << dogs[i].getId() << " is at " << dogs[i].getLocation().x << "," << dogs[i].getLocation().y << endl;
     }
 
 
 
-    return 0;
+
+
 
 }
 

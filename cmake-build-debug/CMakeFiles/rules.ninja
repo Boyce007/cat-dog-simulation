@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Applications/CLion.app/Contents/bin/cmake/mac/x64/bin/cmake --regenerate-during-build -S/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project -B/Users/diboyce21students.desu.edu/dev/obj-ori-course/second-module-project/cmake-build-debug
+  command = /Applications/CLion.app/Contents/bin/cmake/mac/x64/bin/cmake --regenerate-during-build -S"/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project" -B"/Users/diboyce21students.desu.edu/dev/obj-ori-course/OOP Module 2 project/second-module-project/cmake-build-debug"
   description = Re-running CMake...
   generator = 1
 
